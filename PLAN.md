@@ -48,7 +48,13 @@ in an interview.
 4. Settlement/minimization algorithm — plain Java, heavily unit tested (this is the interview
    centerpiece)
 5. Wire balance calc + settlement algorithm into REST endpoints
-6. Only then: auth, validation polish, exception handling, API docs
+6. Validation polish, exception handling, API docs. Auth is explicitly out of scope (see note
+   below) — this step is now just: `@ControllerAdvice` for consistent error responses, tighter
+   `@Valid` annotations on request DTOs, and springdoc/Swagger for docs.
+7. Frontend UI — a real screen to try the app in a browser: create groups/members, add expenses,
+   view balances and settlement. Plain static HTML/JS served from Spring Boot, no separate
+   build pipeline — optimizing for a working demo, not framework polish. Comes after step 6 so
+   it's tested against a backend that already has validation/error handling in place.
 
 ## Working Notes
 
@@ -56,3 +62,10 @@ in an interview.
 - Use Claude Code (JetBrains plugin) for boilerplate/config/debugging you already understand —
   not for generating logic you haven't built yet.
 - Write the settlement algorithm yourself. Be able to explain every line of it unprompted.
+- **2026-07-31 scope decision:** goal shifted to getting a resume-ready version done quickly to
+  start landing interviews, rather than maximum polish. Real auth (login, JWT, etc.) is cut
+  entirely — "no auth yet, single-tenant demo" is the stated scope, not a gap to fill later.
+  The algorithm classes (the part most likely to get grilled on in an interview) were already
+  built and are done; speed on the remaining steps doesn't touch that risk. Worth budgeting a
+  short review pass over `BalanceCalculator`/`SettlementCalculator` before interviews even
+  though they were built directly rather than paired on.

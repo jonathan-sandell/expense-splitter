@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense Splitter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Expense Splitter</h1>
+
+    <section id="group-setup">
+        <div class="card">
+            <h2>Create a group</h2>
+            <form id="create-group-form">
+                <input type="text" id="new-group-name" placeholder="Group name (e.g. Cabin Trip)" required>
+                <button type="submit">Create</button>
+            </form>
+        </div>
+        <div class="card">
+            <h2>Load an existing group</h2>
+            <form id="load-group-form">
+                <input type="number" id="load-group-id" placeholder="Group ID" required>
+                <button type="submit">Load</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="group-view" class="hidden">
+        <h2 id="group-title"></h2>
+        <button id="back-button">&larr; Back</button>
+
+        <div class="card">
+            <h3>Members</h3>
+            <ul id="member-list"></ul>
+            <form id="add-member-form">
+                <input type="text" id="new-member-name" placeholder="Member name" required>
+                <button type="submit">Add member</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h3>Expenses</h3>
+            <ul id="expense-list"></ul>
+            <form id="add-expense-form">
+                <input type="text" id="expense-description" placeholder="Description" required>
+                <input type="number" id="expense-amount" placeholder="Amount" step="0.01" min="0.01" required>
+                <label>Paid by
+                    <select id="expense-paid-by" required></select>
+                </label>
+                <fieldset>
+                    <legend>Split between</legend>
+                    <div id="expense-participants"></div>
+                </fieldset>
+                <button type="submit">Add expense</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h3>Balances</h3>
+            <button id="refresh-balances">Refresh balances</button>
+            <ul id="balance-list"></ul>
+        </div>
+
+        <div class="card">
+            <h3>Settlement plan</h3>
+            <button id="refresh-settlement">Refresh settlement</button>
+            <ul id="settlement-list"></ul>
+        </div>
+    </section>
+
+    <p id="error-banner" class="hidden"></p>
+
+    <script src="app.js"></script>
+</body>
+</html>
